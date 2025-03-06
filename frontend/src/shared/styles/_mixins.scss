@@ -1,0 +1,42 @@
+/** display mixins */
+
+@mixin centerFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin display_end__inMyBox {
+  display: flex;
+  align-items: center;
+  justify-content:flex-end;
+}
+
+
+@mixin fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 50px;
+  z-index: 5; /* 다른 요소들 위에 보이도록 z-index 설정 */
+  background-color: #ffffff;
+}
+
+/** detail styles */
+
+@mixin border-line_style {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #d9d9d9;
+}
+
+@mixin not-input-effect {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  appearance: none;
+}

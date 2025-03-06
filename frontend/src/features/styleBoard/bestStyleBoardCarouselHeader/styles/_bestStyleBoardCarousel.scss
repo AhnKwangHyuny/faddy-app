@@ -1,0 +1,44 @@
+.carousel-container {
+  width: 88%;
+}
+
+.carousel-slide {
+  .carousel-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    gap: 8px;
+
+    .carousel-icon {
+      font-size: 20px;
+    }
+
+    .content {
+      font-size: 15px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .like-section {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+      justify-content: flex-end;
+
+      .like-icon {
+        color: #FF0000;
+        font-size: 16px;
+      }
+
+      .like-count {
+        color: #FF0000;
+        font-size: 10px;
+        font-weight: 500;
+      }
+    }
+  }
+}

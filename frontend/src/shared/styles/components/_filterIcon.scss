@@ -1,0 +1,13 @@
+.filter-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  .material-symbols-outlined {
+    font-size: 24px;
+    color: #000; // 아이콘 색상 (필요에 따라 변경 가능)
+    padding-bottom:5px;
+  }
+}

@@ -1,0 +1,135 @@
+@charset "UTF-8";
+/** src 루트 폴더 아래 생성되는 모든 scss 등록*/
+// setting
+@import "setting/fonts";
+@import "setting/vars";
+@import "setting/reset";
+@import "setting/mixin";
+@import "setting/common";
+
+// widgets style
+@import "widgets/Layout/layout";
+@import "widgets/Header/header";
+@import "widgets/BottomNavigationBar/bottomNavigationBar";
+@import "widgets/HighLightSnapCard/highlightSnapCard";
+@import "widgets/CreationMenuBar/creationMenuBar";
+@import "widgets/ImageUploader/imageUploader";
+@import "widgets/Filter/filter";
+@import "widgets/UserProfile/userProfile";
+@import "widgets/Button/button";
+@import "widgets/Button/FollowButton/followButton";
+@import "widgets/Carousel/carousel";
+@import "widgets/LikeButton/likeButton";
+@import "../../widgets/Comment/CommentButton/commentButton";
+@import "widgets/ShareButton/shareButton";
+@import "widgets/HashtagViewer/hashtagViewer";
+@import "widgets/TextArea/textArea";
+@import "../../widgets/Comment/CommentInputBox/commentInputBox";
+@import "../../widgets/Modal/CommentModal/commentModal";
+@import "widgets/Comment/ReplyCommentCard/reflyCommentCard";
+@import "../../widgets/Comment/CommentCard/commentCard";
+@import "widgets/TaggingImage/taggingImage";
+@import "widgets/Avatar/avatar";
+
+//Snap Components
+@import "widgets/Snap/Thumbnail/thumbnail";
+
+/**page component*/
+// snap
+@import "pages/Snap/Components/Description/description";
+@import "pages/Snap/Components/HashTagBox/hashTagBox";
+
+// snap/detail
+@import "../../pages/SnapDetail/Components/ProfileFollowAction/profileFollowAction";
+@import "pages/snapDetail/Components/Header/header";
+
+// StyleTalk
+@import "pages/StyleTalk/index";
+@import "pages/StyleTalk/components/ChatTypeSelector/chatTypeSelector";
+
+//styleBoardListPage
+@import "pages/styles/styleBoardListPage";
+@import "pages/styleBoardListPage/styles/styleBoardList";
+@import "pages/styleBoardListPage/styles/styleBoard";
+@import "pages/styleBoardListPage/styles/createTopicModal";
+
+//StyleBoardCreatePage
+@import "pages/styleBoardCreatePage/styles/contentEditor";
+@import "pages/styleBoardCreatePage/styles/titleInput";
+
+//StyleBoardDetailsPage
+@import "pages/styleBoardDetailPage/styles/TagList";
+@import "pages/styleBoardDetailPage/styles/header";
+@import "pages/styleBoardDetailPage/styles/metaInfo";
+@import "pages/styleBoardDetailPage/styles/contentViewer";
+@import "pages/styleBoardDetailPage/styles/inputBox";
+@import "pages/styleBoardDetailPage/styles/interactionBar";
+@import "pages/styleBoardDetailPage/styles/commentSection";
+@import "pages/styleBoardDetailPage/styles/optionModal";
+@import "pages/styleBoardDetailPage/styles/replyCommentCard";
+
+/**features components*/
+//thumbnail-card
+@import "features/Thumbnail/ThumbnailList/thumbnailList";
+@import "features/AboutHeader/aboutHeader";
+
+//searchBar
+@import "features/SearchBar/searchBar";
+
+/**pages style*/
+//styleShare (main page)
+@import "pages/StyleShare/styleShare";
+@import "pages/StyleShare/components/SnapSortingButton/snapSortingButton";
+@import "pages/SnapDetail/Components/MenuIcons/menuIcons";
+@import "pages/Login/loginPage";
+
+/**
+* bestStyleBoardCarouselHeader
+*/
+@import "features/styleBoard/bestStyleBoardCarouselHeader/styles/bestStyleBoardCarousel";
+
+
+@import "pages/Snap/index";
+@import "pages/SnapDetail/index";
+@import "pages/StyleTalkRoom/index";
+// StyleShare (main page)
+@import "pages/StyleShare/components/TrendSnapList/trendSnapList";
+
+/**StyleTalk*/
+@import "pages/StyleTalk/components/ChatList/chatList";
+@import "pages/StyleTalk/components/ChatListItem/chatListItem";
+@import "pages/StyleTalk/components/CreateRoomModal/createRoomModal";
+
+
+/** feature */
+
+//sorting menu
+@import "features/Sorting/SortingMenu/sortingMenu";
+@import "features/ContentBox/contentBox";
+
+//search
+@import "features/Search/styles/searchFilterModal";
+
+//user selector modal
+@import "features/UserSelectorModal/userSelectorModal";
+
+
+//interaction
+@import "features/Interaction/index";
+
+
+/**
+* shared ui
+*/
+@import "shared/ui/MoreIcon/moreIcon";
+@import "shared/ui/Logo/logo";
+@import "shared/ui/LoadingUI/loading.scss";
+@import "shared/ui/icons/ImageUploadIcon/imageUploadIcon";
+@import "shared/styles/ContentDivider";
+
+// componets
+@import "shared/styles/components/filterIcon";
+@import "shared/styles/components/floatingActionButton";
+
+/** on the board **/
+@import "pages/OnTheBoard/onTheBoard";

@@ -1,0 +1,153 @@
+@import "shared/scss/setting/mixin";
+
+$image-width: 65px;
+$image-height: 65px;
+$sub-text-color: #61677A;
+$chatListItem-background: #FDFDFD;
+
+@mixin sub-text-color {
+    color: $sub-text-color;
+}
+
+.chatListItem {
+
+    display: flex;
+    margin-bottom: 20px;
+
+
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+        width: 100%;
+
+        .chatListItem-container {
+
+            flex-grow: 1;
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            padding: 5px 0;
+            border-radius: 12px;
+            background: $chatListItem-background;
+
+            .chat-thumbnail {
+                vertical-align: middle;
+
+                .chat-thumbnail-container {
+                    margin-right: 10px;
+
+                    img {
+                        width: $image-width;
+                        height: $image-height;
+                        border-radius: 15px;
+                    }
+                }
+            }
+
+            .chat-label-container {
+                vertical-align: middle;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                .chat-label__title {
+                    display:flex;
+                    gap: 5px;
+                    .title {
+                        font-size: 13px;
+                        font-weight: 700;
+                        margin-right: 2px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 1; /* 원하는 줄 수 */
+                        -webkit-box-orient: vertical;
+                    }
+                    .headCount {
+                        @include sub-text-color;
+                        font-size: 13px;
+
+                        font-weight: 500;
+                    }
+                }
+
+                .chat-label__recentMessage {
+                    // 최근 메시지 스타일
+                    @include text-truncate(200px);
+                    @include sub-text-color;
+                    font-size: 12px;
+
+                }
+
+                .chat-label__hashTag {
+                    padding-top: 2px;
+                    .hashTagList {
+                        display: flex;
+                        gap: 5px;
+                        .hashTag {
+                            // 해시태그 스타일
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+
+            .chat-metaInfo {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                height: 100%;
+                width: 100%;
+                padding: 4px 1px 2px 1px;
+                .chat-metaInfo__unreadCount {
+
+                    .unreadCount-icon {
+                        position: relative;
+
+                        span.material-icons.circle {
+                            // 읽지 않은 메시지 아이콘 스타일
+
+                            display: inline-block;
+                            color: #B4B4B8;
+                            font-size: 32px;
+                            border-radius: 50%;
+                            text-align: center;
+                            line-height: 20px; /* height와 동일한 값 */
+
+
+                        }
+                        .unreadCount {
+                            position: absolute;
+                            top: 32%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+
+                            .count {
+                                font-weight: 900;
+                                color: #ffffff;
+                                font-size: 12px;
+                            }
+                        }
+
+                    }
+
+                }
+
+                .chat-metaInfo__recent-time {
+                    position: absolute; // 절대 위치로 설정
+                    bottom: 0; // 하단에 배치
+                    right: 0; // 오른쪽에 배치
+                    padding-right: 5px;
+                    padding-bottom: 5px;
+                    .time {
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+}

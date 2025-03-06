@@ -1,0 +1,29 @@
+@import "shared/styles/mixins";
+
+$thumbnail-card-width : 170px;
+
+#thumbnail-container {
+  margin : 0 16px;
+  padding-top: 12px;
+}
+
+.thumbnail-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .thumbnail-group {
+    display:flex;
+
+    .thumbnail-wrapper {
+      width: $thumbnail-card-width;
+      margin: 0 10px 15px 0;
+
+      &:last-child {
+        margin: 0 0 15px 0;
+      }
+    }
+
+  }
+}

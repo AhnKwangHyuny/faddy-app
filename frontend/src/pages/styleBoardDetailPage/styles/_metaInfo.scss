@@ -1,0 +1,61 @@
+.meta-info {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 40px;
+
+    .profile-image_container {
+
+        .profile-image {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    }
+
+    .userProfile-interaction_container {
+
+        .user-profile {
+            display: flex;
+            gap: 4px;
+            font-size : 0.9rem;
+            .user-level {
+                color: #6200ea;
+                font-weight: bold;
+            }
+
+            .user-nickname {
+                color: #555;
+            }
+
+            .created-at {
+                color: #aaa;
+                font-size: 0.9em;
+            }
+        }
+
+        .interaction {
+            display: flex;
+            padding: 6px 0 0 0 !important;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+            color: #777;
+
+            .interaction-icon {
+                gap: 3px;
+                display: flex;
+
+                .icon {
+                    font-size : 16px;
+                }
+
+                .count {
+                    font-size : 11px;
+                }
+            }
+        }
+    }
+
+
+}

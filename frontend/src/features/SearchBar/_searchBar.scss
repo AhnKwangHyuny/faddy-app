@@ -1,0 +1,33 @@
+.searchBar {
+  padding: 10px;
+  height: 40px;
+  background-color: #E5E5E5;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+
+  input[type="text"] {
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background-color: inherit;
+
+    width: 100%;
+    font-size: 17px;
+    font-weight: bold;
+    &::placeholder {
+      font-size: 16px;
+    }
+    &:-ms-input-placeholder {
+      font-size: 16px;
+    }
+    &::-moz-placeholder {
+      font-size: 16px;
+    }
+    &::-webkit-input-placeholder {
+      font-size: 16px;
+    }
+    caret-color: #d9d9d9;
+
+  }
+}

@@ -1,0 +1,172 @@
+
+#Style-talk {
+  margin: 0 !important;
+  padding: 0 !important;
+
+  .cr-main-container {
+    margin-top: 80px;
+    overflow-y: hidden;
+    width: 100%; /* 추가: width 설정 */
+
+    .chat-container {
+      height: calc(100vh - 53px);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      .message-list {
+        padding: 10px;
+
+        .message-group {
+          margin-bottom: 20px;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+
+          .user-profile {
+
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            &__avatar {
+              $avatar-size: 30px;
+              width: $avatar-size;
+              height: $avatar-size;
+              margin-right: 10px;
+              line-height: 40px;
+            }
+
+            &__avatar-img {
+              width: 100%;
+              height: 100%;
+              border-radius: 40%;
+              object-fit: cover;
+              vertical-align: middle;
+            }
+
+            &__name {
+              font-weight: bold;
+              font-size: 10px;
+              margin-right:5px;
+            }
+          }
+
+          .message {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            margin-left: 40px;
+
+            &.message-timestamp,
+            &.message-system {
+
+              margin-left: 0 !important;
+              justify-content: center;
+              width: 100%;
+              text-align: center;
+              padding: 5px;
+              border-radius: 5px;
+
+              .message-content {
+                background: none;
+                font-weight: 600;
+                color: #000000;
+              }
+
+              .message-meta-info {
+                display: none;
+              }
+            }
+
+            &.message-incoming {
+              justify-content: flex-end;
+
+              .message-content {
+                margin-left: 0;
+                margin-right: 0;
+                border-radius: 3px 3px 3px 0;
+              }
+
+              .message-meta-info {
+                order: -1;
+                margin-right: 3px;
+
+                .readCount {
+                  flex: 0;
+                  display: flex;
+                  justify-content: flex-end;
+                }
+              }
+            }
+
+            &.message-outgoing {
+              justify-content: flex-start;
+
+              .message-content {
+                margin-left: 0;
+                margin-right: 10px;
+                border-radius: 3px 0 0 3px;
+              }
+
+              .message-meta-info {
+                order: 1; /* Ensures meta info is to the right of the content */
+                margin-left: 3px;
+
+                .readCount {
+                  flex: 0;
+                  display: flex;
+                  justify-content: flex-start;
+                }
+              }
+            }
+
+            .message-content {
+              flex: 1;
+              background-color: #f1f1f1;
+              padding: 10px;
+              border-radius: 12px;
+              font-size: 12px;
+              line-height: 20px;
+              width: auto;
+              max-width: 60%;
+              word-break: break-all;
+              position: relative;
+              box-sizing: border-box; /* 추가: 박스 사이징 설정 */
+            }
+
+            .message-meta-info {
+              align-self: flex-end;
+              display: flex;
+              flex-direction: column-reverse;
+              margin-left: 3px;
+
+              .sentTime {
+                flex: 0;
+
+                .time {
+                  white-space: nowrap;
+                  font-size: 10px;
+                  font-weight: 600;
+                  color: #9e9e9e;
+                }
+              }
+
+              .readCount {
+                flex: 0;
+                display: flex;
+
+                .count {
+                  font-size: 10px;
+                  font-weight: 600;
+                  color: #9e9e9e;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

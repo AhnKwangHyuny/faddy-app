@@ -1,0 +1,49 @@
+.header {
+  width: 100%;
+  text-align: center;
+  font-family: 'Abel';
+  margin-bottom: 20px;
+
+  .header-container {
+    display: flex;
+    width: 100%;
+
+    .frame__menu {
+      width:100%;
+      display: flex;
+      padding: 2px 5px 2px 5px;
+
+      .back__icon__wrapper {
+        flex:1;
+        display: flex;
+        align-items: flex-start;
+
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+
+      }
+
+      .title {
+        flex:1;
+        font-size: 19px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        font-weight: bold;
+        span {
+            margin-bottom :5px;
+        }
+      }
+
+      .option-button_container{
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        font-size: 18px;
+        flex: 1;
+        color : #1445F2;
+      }
+    }
+  }
+}

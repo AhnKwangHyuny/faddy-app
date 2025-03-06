@@ -1,0 +1,44 @@
+.follow-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 55px;
+
+  &__wrapper {
+    border-radius: 5px;
+    padding: 0 4px 4px 40px;
+    .button {
+      // 실제 버튼 요소에 대한 스타일
+      outline: none;
+      border: none;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      color: #1445F2;
+      background-color: #fff;
+      &:hover {
+      }
+
+      &:disabled {
+      }
+    }
+
+    .loading-spinner {
+      // 로딩 스피너에 대한 기본 스타일
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,86 @@
+.style-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 5px 0;
+    margin: 12px 0;
+    background-color: #fff;
+
+    .style-board-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding-left : 10px;
+
+        .style-board-title {
+            font-size: 15px;
+            font-weight: 750;
+            max-width: 250px;
+            margin-bottom: 6px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .user-profile {
+            display: flex;
+            margin-bottom: 6px;
+            gap: 4px;
+
+            .level {
+                color : #4B6BFB;
+                font-weight : 800;
+            }
+
+            .nickname{
+                color : #888;
+                font-size : 13px;
+            }
+
+            .createdAt {
+                font-size: 13px;
+            }
+
+        }
+
+        .interaction {
+            display: flex;
+            justify-content: flex-start;
+            padding : 0 !important;
+
+            .interaction-icon {
+                display: flex;
+                align-items: center;
+                margin-right: 8px;
+
+                .material-symbols-outlined {
+                    font-size: 16px;
+                    font-weight: 300;
+                    margin-right: 4px;
+                }
+
+                .count {
+                    font-size: 11px;
+                }
+            }
+        }
+
+        .created-at {
+            color: #888;
+            font-size: 12px;
+        }
+    }
+
+    .thumbnail-container {
+        flex-shrink: 0;
+        padding : 10px;
+        .thumbnail-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+.comment {
+
+  display: flex;
+  align-items: center;
+
+  .comment-button {
+
+    cursor: pointer;
+    border-radius: 50%;
+    padding-right: 5px;
+    transition: background-color 0.3s;
+
+    &.commented {
+      background-color: #f5f5f5;
+
+    }
+
+    .comment-icon {
+      font-size: 23px;
+      color: #ccc;
+    }
+  }
+
+  .comment-count {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+}

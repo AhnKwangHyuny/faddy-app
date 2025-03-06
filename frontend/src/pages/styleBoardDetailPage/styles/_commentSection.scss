@@ -1,0 +1,219 @@
+@import "shared/styles/mixins";
+
+.comment-section {
+   margin-top : 10px;
+
+   .comment-section__wrapper {
+       .comment-section__header {
+           padding-top: 20px;
+           width: 100%;
+
+           .comment-label {
+               margin-bottom: 25px;
+
+               .label {
+                   font-size: 14px;
+                   font-weight: 700;
+               }
+           }
+       }
+
+       .content {
+           transform: translateY(0);
+           transition: transform 0.3s ease-in-out;
+
+           .comment-list {
+               display: flex;
+               flex-direction: column;
+               gap: 15px;
+
+               .comment-wrapper {
+                   .comment-card {
+                       padding: 0;
+                       background-color: #fff;
+
+                       .comment-card__container {
+                           display: flex;
+                           align-items: flex-start;
+
+                           .avatar-container {
+                               margin-right: 8px;
+                               display: flex;
+                               justify-content: flex-start;
+
+                               .avatar {
+                                    width: 35px;
+                                    height: 35px;
+                                    border-radius: 50%;
+                               }
+                           }
+
+                           .comment-details {
+                               display: flex;
+                               flex-direction: column;
+                               align-items: flex-start;
+                               flex: 1;
+
+                               .profile-info {
+                                   display: flex;
+                                   align-items: center;
+                                   font-size: 11px;
+                                   gap: 2px;
+
+                                   .level {
+                                       font-size: 11px;
+                                       margin-right: 2px;
+                                   }
+
+                                   .username {
+                                       font-weight: 500;
+                                   }
+
+                                   .timestamp {
+                                       padding-top: 1px;
+                                       font-size: 9px;
+                                       color: #999;
+                                   }
+                               }
+
+                               .comment-content {
+                                   font-size: 12px;
+                                   margin-top: 6px;
+                               }
+
+                               .comment-meta {
+                                    margin-top: 10px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: flex-end;
+
+                                   .reply-button {
+                                       cursor: pointer;
+                                       font-size: 12px;
+                                       padding-bottom: 6px;
+                                       background-color: white;
+                                       font-weight: 700;
+                                       color: #161616;
+                                   }
+
+                                   .reply-count {
+                                       padding-top: 2px;
+                                       margin-left: 3px;
+                                       font-size: 12px;
+                                   }
+
+                                   .like-button {
+                                       display: flex;
+                                       align-items: flex-start;
+                                       margin-left: 8px;
+                                       padding-bottom: 6.5px;
+                                       cursor: pointer;
+
+                                       .like {
+                                           margin-right: 2px;
+                                           font-size: 15px;
+
+                                           &.liked {
+                                               color: #E53935;
+                                           }
+                                       }
+
+                                       .count {
+                                           font-size: 11px;
+                                           font-weight: bold;
+
+                                       }
+                                   }
+                               }
+
+                               .more-button {
+                                  align-self: flex-start;
+                                  padding-top: 1px;
+
+                                  .more {
+                                      width : 13px;
+                                      font-weight: 500;
+                                      color : #E6DFDF;
+                                      cursor: pointer;
+                                  }
+                              }
+                           }
+                       }
+
+                       .reply-card {
+                           margin-left: 10px;
+                           padding-left: 10px;
+                           margin-bottom: 20px;
+                           margin-top: 15px;
+                           position: relative;
+
+                           .reply-card__container {
+                               display: flex;
+
+                               .avatar-container {
+                                   margin-right: 8px;
+
+                                   .avatar {
+                                       width: 30px;
+                                       height: 30px;
+                                       border-radius: 50%;
+                                   }
+                               }
+
+                               .comment-details {
+                                   display: flex;
+                                   flex-direction: column;
+
+                                   .profile-info {
+                                       display: flex;
+                                       align-items: center;
+                                       font-size: 11px;
+                                       gap: 2px;
+
+                                       .level {
+                                           font-size: 11px;
+                                           margin-right: 2px;
+                                       }
+
+                                       .username {
+                                           font-weight: 500;
+                                       }
+
+                                       .timestamp {
+                                           font-size: 9px;
+                                           color: #999;
+                                       }
+                                   }
+
+                                   .comment-content {
+                                       font-size: 12px;
+                                       margin-top: 6px;
+                                   }
+                               }
+                           }
+
+                           .more-button {
+                                display: flex;
+                                 justify-content: flex-start;
+                                 padding-top: 1px;
+
+                                 .more {
+                                     width : 13px;
+                                     font-size : 18px;
+                                     font-weight: 500;
+                                     color : #E6DFDF;
+                                     cursor: pointer;
+                                 }
+                             }
+
+                       }
+                   }
+               }
+           }
+       }
+
+       &.open.comment-modal__content {
+           transform: translateY(0);
+       }
+   }
+}

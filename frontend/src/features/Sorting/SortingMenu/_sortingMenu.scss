@@ -1,0 +1,65 @@
+@import "shared/styles/mixins";
+// _variables.scss
+$primary-color: #333;
+$secondary-color: #666;
+$accent-color: #007bff;
+$border-radius: 16px;
+$transition-duration: 0.3s;
+
+
+@mixin transition {
+  transition: all $transition-duration ease-in-out;
+}
+
+// _sorting-menu.scss
+.sorting-menu {
+  padding: 15px 0 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+  .sorting-icon {
+    padding : 2px 8px !important;
+    font-size : 14px;
+    @include centerFlex;
+  }
+
+  .sorting-menu-item {
+    border : 1px solid #E5E5E5;
+    color : #6E6E6E;
+    cursor: pointer;
+    padding: 6px 12px;
+    margin: 4px;
+    border-radius: $border-radius;
+    font-size: 13px;
+
+    &.selected {
+
+    }
+
+    &.open {
+      .sub-category-menu {
+        display: block;
+      }
+    }
+  }
+
+  .sub-category-menu {
+    margin-top: 8px;
+
+    .sub-category-item {
+      cursor: pointer;
+      padding: 4px 8px;
+      margin: 2px;
+      border-radius: $border-radius;
+      @include transition;
+
+      &.selected {
+
+      }
+    }
+  }
+}
+

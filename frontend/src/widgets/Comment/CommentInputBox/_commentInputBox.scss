@@ -1,0 +1,74 @@
+@import "../../../shared/styles/mixins";
+
+.input-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #d9d9d9;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-height: 53px;
+
+  &__wrapper {
+    padding: 5px;
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px; /* You can adjust the max-width as needed */
+
+    .emoticon-box {
+      @include centerFlex;
+      margin-right: 15px;
+
+      .emoticon-icon {
+        padding-left: 3px;
+
+        .material-icons.button-icon {
+          // 스타일 정의
+        }
+      }
+    }
+
+    .input-field {
+      @include centerFlex;
+      padding-bottom: 5px;
+      max-width: 60%;
+      margin-left: 5px;
+      flex-grow: 1;
+
+      .text-form {
+        @include not-input-effect;
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #333;
+      }
+    }
+
+    .submit-comment {
+      @include centerFlex;
+      outline: none;
+      border: none;
+      border-radius: 0;
+      background: white;
+
+      .submit-button {
+        margin-right: 48px;
+
+        .material-icons {
+          // 스타일 정의
+        }
+      }
+    }
+  }
+}

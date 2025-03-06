@@ -1,0 +1,45 @@
+@import "shared/styles/fonts";
+
+.trend-snap-card-list {
+  padding: 15px 0 15px 20px !important;
+  width: 100%; // 부모 컨테이너 너비 100%로 설정
+  overflow: hidden; // 넘치는 부분 숨기기
+
+  .title {
+    .title-wrapper {
+      padding: 0 5px 4px 5px;
+
+      .title__name {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+        .name {
+          font-size: 24px;
+          font-weight: 900;
+          font-family: "Helvetica Neue";
+        }
+      }
+    }
+  }
+
+  .trend-snap-list {
+    margin-right: 10px;
+
+    .carousel {
+      .slick-slider {
+        .slick-track {
+          display: flex; // carousel 요소들을 flex로 배치
+
+          .slick-slide {
+            margin-right: 15px; // 카드 간격 30px로 설정
+            flex-shrink: 0; // 너비 유지
+          }
+
+          /* 마지막 요소에는 margin-right를 주지 않음 */
+          .slick-slide:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
