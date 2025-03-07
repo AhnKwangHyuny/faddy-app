@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <timestamp key="BY_DATE" datePattern="yyyy-MM-dd"/>
+
+    <!-- 향상된 로그 패턴: 요청 ID, 실행 시간, SQL 추적 정보 포함 -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) [%blue(%X{requestId:--})] [%yellow(%X{executionTime:--}ms)] [%thread] %cyan(%logger{36}) - %msg%n%throwable"/>
+
+    <!-- 개발 환경 설정 -->
+    <springProfile name="!prod">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <!-- SQL 로그 상세 출력 -->
+        <logger name="org.hibernate.SQL" level="DEBUG"/>
+        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+
+        <!-- Spring 웹 로그 -->
+        <logger name="org.springframework.web" level="DEBUG"/>
+
+        <!-- 비즈니스 로직 로거 (개발자 패키지) -->
+        <logger name="com.yourcompany" level="DEBUG"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <!-- 운영 환경 설정 -->
+    <springProfile name="prod">
+        <!-- 모든 로그 통합 (검색 용이성) -->
+        <appender name="FILE-ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>./log/all/all-${BY_DATE}.log</file>
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>./backup/all/all-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>100MB</maxFileSize>
+                <maxHistory>30</maxHistory>
+                <totalSizeCap>5GB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+
+        <!-- JSON 형식 로그 (ELK 스택 연동용) -->
+        <appender name="JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>./log/json/json-${BY_DATE}.log</file>
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                <!-- MDC 값들을 포함 -->
+                <includeMdc>true</includeMdc>
+                <includeContext>true</includeContext>
+                <timestampPattern>yyyy-MM-dd'T'HH:mm:ss.SSSZZ</timestampPattern>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>./backup/json/json-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>100MB</maxFileSize>
+                <maxHistory>30</maxHistory>
+                <totalSizeCap>5GB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+
+        <!-- 오류 로그만 별도 저장 -->
+        <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>./log/error/error-${BY_DATE}.log</file>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>./backup/error/error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>100MB</maxFileSize>
+                <maxHistory>60</maxHistory>
+                <totalSizeCap>3GB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+
+        <!-- 성능 모니터링 관련 로그 별도 저장 -->
+        <appender name="PERFORMANCE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>./log/performance/perf-${BY_DATE}.log</file>
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>./backup/performance/perf-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>100MB</maxFileSize>
+                <maxHistory>15</maxHistory>
+                <totalSizeCap>2GB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+
+        <!-- 성능 로거 설정 -->
+        <logger name="com.yourcompany.performance" level="INFO" additivity="false">
+            <appender-ref ref="PERFORMANCE"/>
+            <appender-ref ref="FILE-ALL"/>
+        </logger>
+
+        <root level="INFO">
+            <appender-ref ref="FILE-ALL"/>
+            <appender-ref ref="FILE-ERROR"/>
+            <appender-ref ref="JSON"/>
+        </root>
+    </springProfile>
+
+    <!-- 로그 필터 설정 -->
+    <turboFilter class="ch.qos.logback.classic.turbo.MDCFilter">
+        <MDCKey>debugEnabled</MDCKey>
+        <Value>true</Value>
+        <OnMatch>ACCEPT</OnMatch>
+    </turboFilter>
+</configuration>
