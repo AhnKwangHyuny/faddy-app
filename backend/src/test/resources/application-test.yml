@@ -1,38 +1,44 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/faddy_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: Agh@p970314
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER}
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    show-sql: true
+      ddl-auto: ${JPA_DDL_AUTO}
+    show-sql: ${JPA_SHOW_SQL}
     properties:
       hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
-
+        format_sql: ${JPA_FORMAT_SQL}
+        dialect: ${JPA_DIALECT}
   redis:
     lettuce:
       pool:
-        max-active: 8
-        max-idle: 8
-        min-idle: 0
+        max-active: ${REDIS_MAX_ACTIVE}
+        max-idle: ${REDIS_MAX_IDLE}
+        min-idle: ${REDIS_MIN_IDLE}
 
 logging:
   level:
-    org.hibernate.SQL: debug
-    org.hibernate.type.descriptor.sql: trace
+    org.hibernate.SQL: ${LOGGING_LEVEL_HIBERNATE_SQL}
+    org.hibernate.type.descriptor.sql: ${LOGGING_LEVEL_HIBERNATE_TYPE}
 
+# 아마존 연결
 cloud:
   aws:
     credentials:
-      access-key: YOUR_AWS_ACCESS_KEY
-      secret-key: YOUR_AWS_SECRET_KEY
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
     region:
-      static: ap-northeast-2
+      static: ${AWS_REGION}
     stack:
-      auto: false
+      auto: ${AWS_STACK_AUTO}
     s3:
-      bucket: test-bucket-240404
+      bucket: ${AWS_S3_BUCKET}
+
+gmail:
+  host: ${MAIL_HOST}
+  port: ${MAIL_PORT}
+  username: ${MAIL_USERNAME}
+  password: ${MAIL_PASSWORD}
