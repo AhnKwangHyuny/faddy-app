@@ -26,6 +26,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.springframework.boot:spring-boot-starter-security' // Spring Security 추가
 
+	implementation 'org.apache.commons:commons-pool2'
+
 	// Database
 	implementation 'com.mysql:mysql-connector-j:9.2.0' // MySQL 버전 9.2.0으로 지정
 
@@ -56,10 +58,44 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test' // Security Test 추가
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// MapStruct
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+
+	// JJWT 라이브러리
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5' // Jackson
+
+    // Nimbus JOSE + JWT
+	implementation 'com.nimbusds:nimbus-jose-jwt:9.31'
+
+    // Web Socket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+	// Amazon
+	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.646'
+
+	// web mail
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'com.sun.mail:javax.mail:1.6.2'
+
+	//swagger
+	implementation 'io.swagger:swagger-annotations:1.6.11'
+
+	// AWS SDK
+	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.657'
+
+	// Spring Cloud AWS
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+	jvmArgs '-Xshare:off' // JVM 아규먼트 설정
 }
 
 def querydslDir = "$buildDir/generated/querydsl"
