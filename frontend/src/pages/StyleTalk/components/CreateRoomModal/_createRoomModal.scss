@@ -1,0 +1,102 @@
+.ChatTypeSelector {
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+
+        .modal-header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            position: relative;
+
+            .title-wrapper {
+                flex:1;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                .title {
+                    font-size: 17px;
+                    font-weight: 600;
+                }
+            }
+
+            .close-modal {
+                // 버튼 효과 모두 삭제
+                position:absolute;
+                //위치 왼쪽 위
+                top: 20px;
+                left: 20px;
+
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 17px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                .material-icons {
+                    color: #000;
+                }
+            }
+        }
+
+        .chatTypeSelector__container {
+            background-color: #fff;
+
+            .chat-name__container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 40px 30px 40px;
+
+
+                .chat-name {
+                    .chat-name__wrapper {
+                        .chat-name__button {
+                            border-radius: 10px;
+                            display: flex;
+                            justify-content: center;
+                            flex-direction:column;
+                            align-items: center;
+                            padding: 10px 20px;
+                            cursor: pointer;
+                            font-size: 15px;
+                            font-weight: 600;
+                            color: #000;
+                            background-color: #fffff;
+
+                            //icon sorting-name 사이 간격 추가
+                            .icon, .sorting-name {
+                                margin-bottom: 5px;
+                            }
+                            .icon{
+                                font-size: 30px;
+                                font-weight: 500;
+                            }
+                            .sorting-name {
+                                font-size: 15px;
+                                font-weight: 500;
+
+                            }
+                        }
+                    }
+                }
+            }
+            .hdlne.line {
+                // 약간 입체감 있게 스타일
+                box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+                //border 삭제
+                border: none;
+
+            }
+        }
+    }
+}

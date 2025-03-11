@@ -1,0 +1,46 @@
+#ChatTypeSelector {
+    padding : 15px 20px 5px 20px !important;
+    .chatTypeSelector__container {
+        position: relative;
+        .chat-name__container {
+            padding: 10px 5px 12px 0;
+            display: flex;
+            width:100%;
+            gap: 15px;
+
+            .chat-name {
+                .chat-name__wrapper {
+
+                    .chat-name__button {
+                        background: none;
+                        color: #000000;
+                        border: none;
+                        padding: 0;
+                        margin: 0;
+                        cursor: pointer;
+                        outline: inherit;
+
+                        .sorting-name {
+                            font-size: 17px;
+                            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                            font-weight: 500;
+                            line-height: 24px;
+
+                        }
+                    }
+                }
+            }
+        }
+
+        .line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            width: 100%;
+            height: 1px;
+            background-color: rgb(243, 243, 243);
+            border: 0;
+        }
+    }
+}

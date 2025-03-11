@@ -1,0 +1,97 @@
+@import "shared/styles/mixins";
+
+$colors: (
+        'white': #fff,
+        'black': #000,
+        'grey-light': #d9d9d9,
+        'grey-medium': #c9c1bc,
+        'grey-dark': #2f2d2c
+);
+
+$font-family: 'Sora';
+
+@mixin flex-container($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+
+.description {
+  margin: 5px 0;
+  width: 100%;
+  @include flex-container(row, flex-start, flex-start);
+  line-height: normal;
+  letter-spacing: normal;
+
+  .description__wrapper {
+    padding: 7px 2px !important;
+    flex: 1;
+    background-color: map-get($colors, 'white');
+    @include flex-container(column, flex-end, flex-start);
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 16px;
+    color: map-get($colors, 'grey-dark');
+    font-family: $font-family;
+    position: relative;
+
+    &::before {
+      @include border-line_style;
+      top: 0;
+    }
+
+    &::after {
+      @include border-line_style;
+      bottom: 0;
+    }
+
+    .description__header {
+      width: 100%;
+      @include flex-container(row, flex-start, flex-start);
+      padding: 0 1px;
+      box-sizing: border-box;
+      margin-bottom: 3px;
+
+      .logo {
+        flex: 1;
+        font-weight: 800;
+        font-size: 17px;
+      }
+    }
+
+    .description__input-wrapper {
+      @include flex-container(column, flex-start, flex-start);
+      margin-top: 4px;
+      height: 144px;
+      width: 100%;
+
+      .description__input {
+        padding: 0 10px 10px 0;
+        width: 100%;
+        height: 100%;
+        font-size: 14px;
+        border-radius: 4px;
+        resize: none;
+        outline: none;
+
+        &:focus {
+          border-color: #007bff;
+        }
+
+        &::placeholder {
+          font-size: 14px;
+          font-weight: 200;
+          color: map-get($colors, 'grey-medium');
+          display: inline-block;
+        }
+      }
+    }
+
+    .description__footer {
+      @include flex-container(row, flex-end, flex-start);
+      width: 100%;
+    }
+  }
+}

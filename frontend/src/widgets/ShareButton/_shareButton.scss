@@ -1,0 +1,20 @@
+@import "shared/styles/mixins";
+
+.share-button {
+  flex: 1;
+  @include display_end__inMyBox();
+  cursor: pointer;
+
+
+  .share-button__wrapper {
+    @include centerFlex();
+    padding-right: 18px;
+
+    .share-button__icon {
+      @include centerFlex();
+      font-size: 22px;
+      .share-icon {
+      }
+    }
+  }
+}

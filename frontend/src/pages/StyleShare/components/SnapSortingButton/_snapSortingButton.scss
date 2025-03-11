@@ -1,0 +1,58 @@
+@import "shared/styles/mixins";
+
+.snap-sorting-buttons {
+  @include centerFlex;
+  margin-top: 20px;
+  padding: 30px 27px 20px 15px;
+
+  .snap-sorting__buttons__container {
+    @include centerFlex;
+    padding: 6px 18px 6px 4px;
+    border-radius: 44px;
+    background-color: #F7F5F2;
+
+    .button__wrapper {
+      margin-right: 10px;
+      flex: 1;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .button {
+        border-radius: 44px;
+        padding: 12px 24px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 9.5rem;
+        margin-right: -22px;
+        background-color: #F7F5F2;
+        color: #000000;
+        position: relative;
+
+        &.last-child {
+          margin-right: 0;
+        }
+
+        &.isClicked {
+          background-color: #333;
+          color: #fff;
+          z-index: 20;
+        }
+      }
+
+      .recommend-sorting {
+        @extend .button;
+      }
+
+      .recent-sorting {
+        @extend .button;
+      }
+
+      .button-name {
+        font-size: 15px;
+      }
+    }
+  }
+}

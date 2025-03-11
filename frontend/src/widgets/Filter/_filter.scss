@@ -1,0 +1,97 @@
+$colors: (
+    'white': #fff,
+    'black': #000,
+    'grey-light': #d9d9d9,
+    'grey-medium': #c9c1bc,
+    'grey-dark': #2f2d2c
+);
+
+$font-family: 'Sora';
+
+@mixin flex-container($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+.filter {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    @include flex-container(row, flex-start, flex-start);
+
+    .filter__wrapper {
+        padding: 7px 2px !important;
+
+        .category__name {
+            flex: 1;
+            font-weight: 800;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .filter__list {
+            .category__container {
+                .category_key {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start; /* 변경: 아이템들이 상단에 맞춰지도록 */
+                    padding: 0 1px;
+                    box-sizing: border-box;
+                    margin-bottom: 8px;
+
+                    .logo {
+                        font-weight: 600;
+                        padding: 0 10px 10px 5px;
+                        font-size: 15px;
+                        text-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+                        flex: 0;
+                        width: auto;
+                        display: inline-block;
+                        white-space: nowrap;
+                    }
+                }
+            }
+
+            .category-list {
+                padding: 0 10px 10px 5px;
+                display: flex;
+                gap: 10px;
+                margin-bottom: 15px;
+                flex-wrap: wrap;
+
+                .switch-button {
+                    min-width: 60px;
+                    border-radius: 18px;
+                    background-color: rgba(217, 217, 217, 0.7);
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 9px 10px 9px 10px;
+                    box-sizing: border-box;
+
+                    &.selected {
+                        min-width: 60px;
+                        border-radius: 99999px;
+                        background-color: #000000;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 9px 8px 9px 8px;
+                        box-sizing: border-box;
+                        color: #fff;
+                    }
+
+                    .item {
+                        font-size: 14px;
+                        font-weight: 800;
+                    }
+                }
+            }
+        }
+    }
+}

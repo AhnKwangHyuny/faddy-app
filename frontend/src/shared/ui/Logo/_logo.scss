@@ -1,0 +1,27 @@
+@import "shared/styles/mixins";
+
+.logo {
+  flex:1;
+  @include centerFlex;
+
+
+  .logo__wrapper {
+    flex:1;
+    @include centerFlex;
+
+
+    a {
+
+      span {
+        font-size: 17px;
+        line-height: 1;
+        font-weight: 800;
+      }
+    }
+  }
+}
+
+
+
+
+

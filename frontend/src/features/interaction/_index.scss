@@ -1,0 +1,13 @@
+@import "shared/styles/mixins";
+
+.interaction {
+  display: flex;
+  padding : 5px 5px 5px 5px !important;
+
+  .align-flex-end {
+
+    display: flex;
+    align-items: flex-end;
+
+  }
+}

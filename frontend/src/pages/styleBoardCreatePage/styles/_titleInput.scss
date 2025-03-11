@@ -1,0 +1,20 @@
+.title-input-container {
+    margin-bottom: 20px;
+}
+
+.title-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #D9D9D9;
+    font-size: 18px;
+    padding: 10px 5px;
+
+    &::placeholder {
+        color: #D9D9D9;
+    }
+
+    &:focus {
+        outline: none;
+        border-bottom-color: black;  // 색깔은 필요에 따라 변경 가능합니다.
+    }
+}

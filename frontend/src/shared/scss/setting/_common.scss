@@ -1,0 +1,156 @@
+html, body {
+    overscroll-behavior: none;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+body {
+    background-color: var(--white);
+    width: 100%;
+    overflow-x: hidden;
+
+}
+
+#style-share {
+    padding-bottom: 60px; /* 메뉴바의 높이만큼 패딩 추가 */
+    min-height: calc(100vh - 60px); /* 뷰포트 높이에서 메뉴바 높이 빼기 */
+}
+
+
+// 섹션 공통 요소
+section:not(.snapDetail, #style-share) {
+    padding: 40px;
+
+    @media (max-width: 800px){
+        padding: 15px 20px 15px 20px;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+
+        em {
+            position: relative;
+            
+            &::after {
+                content: '';
+                width: 100%;
+                height: 50%;
+                background-color: var(--red100);
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                z-index: -1;
+                border-radius: 30px;
+            }
+        }
+    }
+}
+
+// 섹션 로딩 소스
+.isLoading {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.isLoaded {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+// 마우스 오버 아이콘
+.play__icon {
+    a {
+        position: relative;
+        display: block;
+        cursor: pointer;
+        width: 100%;
+        
+        &::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background-color: var(--blackAlpha200);
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: background-color 0.3s;
+        }
+
+        &:hover::before {
+            background-color: var(--blackAlpha);
+        }
+
+        &::after {
+            content: "";
+            width: 80px;
+            height: 80px;
+            background: var(--blackAlpha400) url(../../img/icon/play.svg) no-repeat center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        &:hover::after {
+            opacity: 1;
+        }
+    }
+}
+
+// 유저 프로필 이름
+.upn-1 {
+    font-size: 1.1rem;
+    font-weight: 750;
+}
+
+.level {
+    font-size : 0.7rem;
+
+}
+
+//유저 motto
+.mto-1 {
+    font-size: 0.7rem;
+}
+
+.mp-0 {
+    margin:0;
+    padding:0;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-15{
+    margin-top: 15px;
+}
+
+.ipflr-20 {
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.wvp-100 {
+  width : 100vw;
+}
+
+.fwip-20 {
+    position: relative;
+    left: -20px;
+    width: calc(100vw + 40px) !important;
+}
+
+.fd-0 {
+    padding: 0px;
+}

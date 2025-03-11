@@ -1,0 +1,47 @@
+.Creation__menu__bar {
+  width: 100%;
+  text-align: center;
+  font-family: 'Abel';
+  margin-bottom: 20px;
+
+  .menu__bar__container {
+    display: flex;
+    width: 100%;
+
+    .frame__menu {
+      width:100%;
+      display: flex;
+      align-items: center;
+      padding: 2px 5px 2px 5px;
+
+      .back__icon__wrapper {
+        flex:1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 30px;
+        height: 30px;
+
+        .back-icon__button {
+          font-size: 20px;
+        }
+      }
+
+      .title {
+        flex:1;
+        font-size: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .submit-button{
+        display: flex;
+        justify-content: flex-end;
+        font-size: 17px;
+        flex: 1;
+        color : #1445F2;
+      }
+    }
+  }
+}

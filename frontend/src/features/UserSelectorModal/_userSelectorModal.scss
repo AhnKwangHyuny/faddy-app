@@ -1,0 +1,158 @@
+.user-selector-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 100;
+    overflow: hidden;
+
+    .modal-main-container {
+        position: relative;
+        padding: 10px 15px 10px 15px;
+        height: calc(100% - 100px); /* adjust the value to your liking */
+        overflow-y: hidden; /* add this to prevent overflow */
+        background-color: #ffffff;
+        width: 100%;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        animation: slide-up 0.3s ease-out;
+
+        .modal-header {
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 0 25px 0;
+            position: relative;
+
+            .close-modal {
+                cursor: pointer;
+                border: none;
+                background-color: transparent;
+                outline: none;
+                color: #000000;
+                align-self: center;
+                width: auto;
+                height: 24px;
+            }
+
+            .modal-title {
+                align-self: center;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 auto;
+
+                .title {
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+            }
+
+            .submit-button {
+                align-self: center;
+                border: none;
+                background-color: transparent;
+                outline: none;
+                font-size: 14px;
+                font-weight: 700;
+                color: #9b9b9b;
+            }
+
+            .enabled {
+              color: #007bff;
+            }
+        }
+
+        .friend-container {
+            padding: 20px 0 10px 0px;
+
+            .friend {
+                font-size: 12px;
+                font-weight: 600;
+                color: #9b9b9b;
+            }
+        }
+
+        .user-selector-list {
+            overflow-y: auto; /* add this to make it scrollable */
+            max-height: auto; /* adjust the max height to your liking */
+            display: flex;
+            flex-direction: column;
+
+            .selectors {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                .user-profile {
+                    flex: 1;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .user-info {
+                        align-self: center;
+                        display: flex;
+                        .user-image-container {
+                            img {
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 40%;
+                            }
+                        }
+
+                        .user-nickname {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            margin-left: 15px;
+                            font-size: 15px;
+                            font-weight: 500;
+
+                        }
+                    }
+
+                    .user-checkbox {
+                        align-self: center;
+                        width: 25px;
+                        height: 25px;
+
+                        input[type="checkbox"] {
+                            width: 25px;
+                            height: 25px;
+                            border-radius: 50%;
+                            border: 2px solid #E5E5E5;
+                            cursor: pointer;
+                        }
+
+                        //checkbox checked
+                        input[type="checkbox"]:checked {
+                            //진한 그레이
+                            background-color: #9b9b9b;
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(80%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

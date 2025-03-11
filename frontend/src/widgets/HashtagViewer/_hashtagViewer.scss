@@ -1,0 +1,19 @@
+@import "shared/styles/mixins";
+
+.hashtag-viewer {
+  padding-left: 6px;
+  display: flex;
+  width: 100%;
+
+  .hashtag-viewer__wrapper {
+    @include centerFlex();
+
+    .hashtag {
+      padding: 3px 3px 3px 2px;
+      margin: 1px;
+      font-size: 12px;
+      color: #1F3EE0;
+    }
+  }
+}
+

@@ -1,0 +1,24 @@
+.tag-list {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 간격을 더 띄워줍니다 */
+
+    .tag {
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        padding: 5px 12px;
+        font-size: 0.9em;
+    }
+
+    .tag.topic {
+        color: #000;
+        background-color: #A6A5E6;
+        font-weight: bold;
+        padding: 5px 12px;
+        font-size: 0.9em;
+        border-radius: 4px;
+        font-weight: 700;
+    }
+}
+

@@ -1,0 +1,133 @@
+.header__logo {
+    flex:1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top : 15px;
+
+    .logo_container, .component__top-menu {
+        flex:1;
+        display: flex;
+    }
+
+    .logo_container {
+
+        @media (max-width: 800px) {
+            border-bottom: 0;
+        }
+
+        a {
+            display: flex;
+            padding: 10px;
+            margin: 10px;
+
+            em {
+                width: 20px;
+                height: 20px;
+                display: block;
+                background-color: #637074;
+                margin-right: 10px;
+                animation: ani 20s 20s ease-in-out infinite;
+            }
+
+            span {
+                font-size: 20px;
+                line-height: 1;
+                font-weight: 900;
+            }
+        }
+    }
+    .component__top-menu {
+        display : flex;
+        justify-content: flex-end;
+        margin-right: 15px;
+        align-items: center;
+
+        .top-menu_list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            align-items : center;
+
+            .list__item {
+                padding : 10px;
+
+                a {
+                    text-decoration: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .icon__box {
+                    font-size: 21px; /* 아이콘 크기 설정 */
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+}
+
+.header__menu {
+    display: flex;
+
+    .keyword {
+        display : flex;
+        padding: 0 0 5px 15px;
+
+        li {
+
+            display: inline-block;
+            a , button {
+                display: inline-block;
+                padding: 5px 15px;
+                border: 1px solid var(--black200);
+                font-size: 0.8rem;
+                border-radius: 40px;
+                margin: 3px 1px;
+                transition: all 0.3s;
+
+           }
+
+           button {
+            background-color: transparent;
+             outline: none;
+             cursor: pointer;
+             color : #000;
+           }
+
+           &.active a {
+               background-color: var(--black100);
+               color: var(--white);
+           }
+
+           button:hover, button:focus, button:active {
+             background-color: transparent;
+             box-shadow: none;
+           }
+        }
+    }
+}
+
+
+
+
+@keyframes ani {
+    0% {
+        transform: rotate(0) scale(1);
+        border-radius: 0;
+    }
+    50% {
+        transform: rotate(720deg) scale(0.5);
+        border-radius: 20px;
+    }
+    100% {
+        transform: rotate(0) scale(1);
+        border-radius: 0;
+    }
+}
