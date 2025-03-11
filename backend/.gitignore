@@ -36,6 +36,10 @@ out/
 ### VS Code ###
 .vscode/
 
+### application ###
+backend/src/main/resources/application.yml
+backend/src/test/resources/application-test.yml
+
 ### enviroment valuebles ###
 .env
 
