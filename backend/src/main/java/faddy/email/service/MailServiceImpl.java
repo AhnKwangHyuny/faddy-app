@@ -1,6 +1,7 @@
 package faddy.email.service;
 
 import faddy.email.dto.AuthCodeMessage;
+import faddy.email.dto.EmailAuthType;
 import faddy.global.Utils.RedisUtil;
 import faddy.api.response.AuthCodeVerificationResult;
 import faddy.global.exception.BadRequestException;
@@ -17,6 +18,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.rmi.ServerError;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Optional;
@@ -25,13 +27,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 이메일 인증 서비스
+ * MailService 인터페이스의 구현 클래스
  * Naver와 Gmail 두 가지 메일 서비스를 사용하여 이메일 인증 기능을 제공합니다.
  */
 @Slf4j
 @Service
 @Transactional
-public class MailService {
+public class MailServiceImpl implements MailService {
 
     private static final String AUTH_CODE_PREFIX = "AuthCode";
     private static final int AUTH_CODE_EXPIRY_SECONDS = 210; // 3분 30초
@@ -42,7 +44,7 @@ public class MailService {
     private final RedisUtil redisUtil;
     private final UserRepository userRepository;
 
-    public MailService(
+    public MailServiceImpl(
             @Qualifier("naverSender") JavaMailSender naverMailSender,
             @Qualifier("gmailSender") JavaMailSender gmailMailSender,
             RedisUtil redisUtil,
@@ -63,13 +65,7 @@ public class MailService {
         return "gmail".equalsIgnoreCase(type) ? gmailMailSender : naverMailSender;
     }
 
-    /**
-     * 사용자가 입력한 인증번호와 실제 인증 번호를 비교합니다.
-     *
-     * @param email 사용자 이메일
-     * @param authNum 사용자가 입력한 인증번호
-     * @return 인증 성공 여부
-     */
+    @Override
     public boolean checkAuthNum(String email, String authNum) {
         String key = AUTH_CODE_PREFIX + email;
         String storedCode = redisUtil.getData(key);
@@ -77,25 +73,34 @@ public class MailService {
     }
 
     /**
-     * 회원 가입 인증 이메일을 생성하고 전송합니다.
-     * 기본적으로 Naver 메일 서비스를 사용합니다.
+     * 이메일 주소를 분석하여 적절한 메일 서비스로 인증 코드를 전송합
+     * 이메일 도메인에 따라 Gmail 또는 Naver 서비스를 사용
      *
-     * @param email 인증 이메일을 받을 사용자의 이메일 주소
-     * @return 생성된 인증 번호
+     * @param email 인증 코드를 받을 이메일 주소
+     * @return 생성된 인증 코드
      */
+    @Override
     @Transactional
     public String sendCodeToMail(String email) throws NoSuchAlgorithmException {
-        return sendCodeToMail(email, "naver");
+        // 이메일 형식 검증
+        if (!isValidEmail(email)) {
+            throw new BadRequestException(ExceptionCode.INVALID_EMAIL_FORMAT);
+        }
+
+        // 지원되는 이메일 타입인지 확인
+        if (!EmailAuthType.isValidEmailType(email)) {
+            throw new BadRequestException(ExceptionCode.INVALID_EMAIL_FORMAT);
+        }
+
+        // 이메일로부터 메일 타입 문자열 얻기
+        String mailType = EmailAuthType.getMailTypeFromEmail(email);
+
+        // 결정된 메일 타입으로 인증 코드 전송
+        return sendCodeToMail(email, mailType);
     }
 
-    /**
-     * 회원 가입 인증 이메일을 생성하고 전송합니다.
-     * 지정된 메일 서비스를 사용합니다.
-     *
-     * @param email 인증 이메일을 받을 사용자의 이메일 주소
-     * @param mailType 사용할 메일 서비스 유형 ("naver" 또는 "gmail")
-     * @return 생성된 인증 번호
-     */
+
+    @Override
     @Transactional
     public String sendCodeToMail(String email, String mailType) throws NoSuchAlgorithmException {
         // 이메일 형식 검증
@@ -133,6 +138,7 @@ public class MailService {
     private void sendMail(JavaMailSender mailSender, String setFrom, String toMail,
                           String title, String content) {
         try {
+
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 
@@ -145,16 +151,17 @@ public class MailService {
             log.info("이메일 전송 성공: {}", toMail);
         } catch (MessagingException e) {
             log.error("이메일 전송 실패: {}", e.getMessage(), e);
-            throw new ServerProcessingException(ExceptionCode.INVALID_EMAIL_AUTH_CODE);
+            // 더 구체적인 오류 메시지 로딩
+            if (e.getMessage().contains("535 5.7.1")) {
+                throw new ServerProcessingException(ExceptionCode.INVALID_EMAIL_AUTH_CODE);
+
+            } else {
+                throw new ServerProcessingException(ExceptionCode.INVALID_EMAIL_AUTH_CODE);
+            }
         }
     }
 
-    /**
-     * 이메일 형식인지 확인합니다.
-     *
-     * @param email 검증할 이메일 주소
-     * @return 유효한 이메일 형식이면 true, 그렇지 않으면 false
-     */
+    @Override
     public boolean isValidEmail(String email) {
         if (email == null) {
             return false;
@@ -184,11 +191,7 @@ public class MailService {
         }
     }
 
-    /**
-     * Redis에서 인증 코드를 삭제합니다.
-     *
-     * @param email 사용자 이메일
-     */
+    @Override
     @Transactional
     public void deleteAuthCode(final String email) {
         try {
@@ -199,25 +202,16 @@ public class MailService {
             }
         } catch (Exception e) {
             log.warn("Redis 인증 코드 삭제 중 오류 발생: {}", e.getMessage(), e);
-            throw new ServerProcessingException(ExceptionCode.DUPLICATE_EMAIL_REDIS);
+            throw new ServerProcessingException(ExceptionCode.INVALID_EMAIL_AUTH_CODE);
         }
     }
 
-    /**
-     * Redis에 저장될 인증 코드의 키를 생성합니다.
-     *
-     * @param email 사용자 이메일
-     * @return 생성된 키
-     */
+    @Override
     public String createKey(String email) {
         return AUTH_CODE_PREFIX + email;
     }
 
-    /**
-     * 임의의 6자리 인증 코드를 생성합니다.
-     *
-     * @return 생성된 인증 코드
-     */
+    @Override
     public String createCode() throws NoSuchAlgorithmException {
         try {
             Random random = SecureRandom.getInstanceStrong();
@@ -233,11 +227,7 @@ public class MailService {
         }
     }
 
-    /**
-     * 이메일 중복을 확인합니다.
-     *
-     * @param email 중복 확인할 이메일
-     */
+    @Override
     public void checkDuplicatedEmail(String email) {
         Optional<String> findEmail = userRepository.findEmailByEmail(email);
         findEmail.ifPresentOrElse(
@@ -249,13 +239,7 @@ public class MailService {
         );
     }
 
-    /**
-     * 인증 코드를 검증합니다.
-     *
-     * @param email 사용자 이메일
-     * @param authCode 인증 코드
-     * @return 인증 결과
-     */
+    @Override
     public AuthCodeVerificationResult verifiedCode(final String email, final String authCode) {
         this.checkDuplicatedEmail(email);
 
@@ -272,11 +256,7 @@ public class MailService {
         return new AuthCodeVerificationResult(authResult);
     }
 
-    /**
-     * 이메일 중복 여부를 확인합니다.
-     *
-     * @param email 중복 확인할 이메일
-     */
+    @Override
     @Transactional(readOnly = true)
     public void checkDuplication(String email) {
         if (email == null || !this.isValidEmail(email)) {

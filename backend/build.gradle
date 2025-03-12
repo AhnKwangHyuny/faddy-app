@@ -81,7 +81,6 @@ dependencies {
 
 	// web mail
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
-	implementation 'com.sun.mail:javax.mail:1.6.2'
 
 	//swagger
 	implementation 'io.swagger:swagger-annotations:1.6.11'

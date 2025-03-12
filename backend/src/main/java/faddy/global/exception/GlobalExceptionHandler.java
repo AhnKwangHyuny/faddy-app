@@ -122,4 +122,10 @@ public class GlobalExceptionHandler {
         return ErrorApiResponse.of(HttpStatus.BAD_REQUEST, e.getMessage());
     }
 
+
+    @ExceptionHandler(EmailAuthTypeException.class)
+    public ResponseEntity<? extends ApiResponse> handleEmailAuthTypeException (final DeleteEntityException e) {
+        ExceptionLogger.logException(e);
+        return ErrorApiResponse.of(HttpStatus.BAD_REQUEST, e.getMessage());
+    }
 }

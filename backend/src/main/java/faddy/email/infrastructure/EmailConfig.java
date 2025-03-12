@@ -3,7 +3,6 @@ package faddy.email.infrastructure;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
@@ -42,55 +41,56 @@ public class EmailConfig {
     private String naverPassword;
 
     /**
-     * gmail , naver SMTP 서버를 위한 JavaMailSender 객체를 생성하고 반환합니다.
+     * Gmail 이메일 인증을 위한 MailSender 생성
      *
-     * @return 설정된 속성을 가진 JavaMailSender 객체
+     * @return Gmail MailSender
      */
-
-    @Bean
-    @Primary
+    @Bean(name = "gmailSender")
     public JavaMailSender gmailMailSender() {
-        return createMailSender(gmailHost, gmailPort , gmailUsername , gmailPassword);
-    }
-
-    @Bean
-    public JavaMailSender naverMailSender() {
-
-        return createMailSender(naverHost, naverPort , naverUsername , naverPassword);
-    }
-
-
-    /**
-     * 주어진 설정을 사용하여 JavaMailSender 객체를 생성합니다.
-     *
-     * @param host SMTP 서버의 호스트 이름
-     * @param port SMTP 서버의 포트 번호
-     * @param username SMTP 서버의 사용자 이름
-     * @param password SMTP 서버의 비밀번호
-     * @return 설정된 속성을 가진 JavaMailSender 객체
-     */
-
-    private JavaMailSender createMailSender(String host, int port, String username, String password) {
-
+        // Gmail은 앱 비밀번호 또는 OAuth2 인증이 필요합니다
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost(host);
-        mailSender.setPort(port);
-        mailSender.setUsername(username);
-        mailSender.setPassword(password);
+        mailSender.setHost(gmailHost);
+        mailSender.setPort(gmailPort);
+        mailSender.setUsername(gmailUsername);
+        mailSender.setPassword(gmailPassword);
 
-        //  JavaMail의 속성을 설정하기 위한 Properties 객체를 생성
+        Properties props = new Properties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.debug", "true");
+        props.put("mail.smtp.ssl.trust", gmailHost);
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 
-        Properties javaMailProperties = new Properties();
-        javaMailProperties.put("mail.transport.protocol", "smtp");
-        javaMailProperties.put("mail.smtp.auth", "true");
-        javaMailProperties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); // SSL 소켓 팩토리 클래스를 사용
-        javaMailProperties.put("mail.smtp.starttls.enable", "true"); // STARTTLS를 사용하여 암호화된 통신을 활성화
-        javaMailProperties.put("mail.debug", "true"); // 디버깅 정보를 출력
-        javaMailProperties.put("mail.smtp.ssl.trust", host);
-        javaMailProperties.put("mail.smtp.ssl.protocols", "TLSv1.2");
-
-        mailSender.setJavaMailProperties(javaMailProperties); // JavaMailSender에 커스텀된 설정 사용
-
+        mailSender.setJavaMailProperties(props);
         return mailSender;
     }
+
+    /**
+     * Naver 이메일 인증을 위한 MailSender 생성
+     *
+     * @return Naver MailSender
+     */
+    @Bean(name = "naverSender")
+    public JavaMailSender naverMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost(naverHost);
+        mailSender.setPort(naverPort);
+        mailSender.setUsername(naverUsername);
+        mailSender.setPassword(naverPassword);
+
+        Properties props = new Properties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.debug", "true");
+        props.put("mail.smtp.ssl.trust", naverHost);
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+
+        mailSender.setJavaMailProperties(props);
+        return mailSender;
+    }
+
 }

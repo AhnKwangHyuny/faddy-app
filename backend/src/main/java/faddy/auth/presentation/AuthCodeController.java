@@ -1,7 +1,7 @@
 package faddy.auth.presentation;
 
 import faddy.auth.jwt.Service.JwtUtil;
-import faddy.email.service.MailService;
+import faddy.email.service.MailServiceImpl;
 import faddy.global.Utils.RedisUtil;
 import faddy.api.Dto.ResponseDto;
 import faddy.api.response.AuthCodeVerificationResult;
@@ -29,7 +29,7 @@ import java.util.Map;
 @RequestMapping("/api/v1/auth-codes")
 public class AuthCodeController {
 
-    private final MailService mailService;
+    private final MailServiceImpl mailServiceImpl;
     private final RedisUtil redisUtil;
     private final JwtUtil jwtUtil;
 
@@ -66,7 +66,7 @@ public class AuthCodeController {
         String code = request.getCode();
         String token = null;
 
-        AuthCodeVerificationResult result = mailService.verifiedCode(email, code);
+        AuthCodeVerificationResult result = mailServiceImpl.verifiedCode(email, code);
         try {
             if(result.getResult()) {
 
@@ -128,11 +128,11 @@ public class AuthCodeController {
 
         String email = emailDto.getEmail();
 
-        if(email.isEmpty() || !mailService.isValidEmail(email)) {
+        if(email.isEmpty() || !mailServiceImpl.isValidEmail(email)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        mailService.sendCodeToMail(email); // 이메일 유효성 , 중복 검사 후 인증코드 발송
+        mailServiceImpl.sendCodeToMail(email); // 이메일 유효성 , 중복 검사 후 인증코드 발송
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -158,9 +158,9 @@ public class AuthCodeController {
 
         String email = emailDto.getEmail();
 
-        String key = mailService.createKey(email);
+        String key = mailServiceImpl.createKey(email);
 
-        if(email.isEmpty() || !mailService.isValidEmail(email) || !redisUtil.hasKey(key) )  {
+        if(email.isEmpty() || !mailServiceImpl.isValidEmail(email) || !redisUtil.hasKey(key) )  {
 
             return ResponseEntity.badRequest().body(
                     ResponseDto.response(

@@ -16,7 +16,7 @@ public class AuthCodeMessage {
     private String content;
 
     public static AuthCodeMessage createMessage(String email, String authNumber) {
-        String setFrom = "agh0314@gmail.com";
+        String setFrom = email;
         String toMail = email;
         String title = "회원 가입 인증 이메일 입니다.";
         String content =

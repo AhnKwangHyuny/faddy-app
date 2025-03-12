@@ -3,7 +3,7 @@ package faddy.api.auth;
 
 import faddy.api.Dto.ResponseDto;
 import faddy.email.dto.EmailDto;
-import faddy.email.service.MailService;
+import faddy.email.service.MailServiceImpl;
 import faddy.global.exception.BadRequestException;
 import faddy.global.exception.ExceptionCode;
 import faddy.global.exception.ExceptionResponse;
@@ -24,12 +24,12 @@ import java.util.Map;
 @Slf4j
 @RequestMapping("/api/v1/auths")
 public class AuthController {
-    private final MailService mailService;
+    private final MailServiceImpl mailServiceImpl;
 
     private final UserService userService;
     @Autowired
-    public AuthController(MailService mailService , UserService userService) {
-        this.mailService = mailService;
+    public AuthController(MailServiceImpl mailServiceImpl, UserService userService) {
+        this.mailServiceImpl = mailServiceImpl;
         this.userService = userService;
     }
 
@@ -70,12 +70,12 @@ public class AuthController {
     // 이메일 중복 확인 요청
     @PostMapping("/email/duplicates")
     public ResponseEntity<?> checkEmailDuplication(@RequestBody @Valid EmailDto emailDto) {
-
+        System.out.println("emailDto = " + emailDto);
         String email = emailDto.getEmail();
         Map<String , Object>  response = new HashMap<>();
 
         // 이메일 중복 확인
-        mailService.checkDuplication(email);
+        mailServiceImpl.checkDuplication(email);
 
         response.put("message" , "사용 가능한 이메일 입니다.");
         response.put("isDuplicated", false);

@@ -2,7 +2,7 @@ package faddy.user.presentation;
 
 import faddy.api.Dto.ResponseDto;
 import faddy.auth.dto.LoginRequestDto;
-import faddy.email.service.MailService;
+import faddy.email.service.MailServiceImpl;
 import faddy.global.Utils.UserValidator;
 import faddy.global.exception.BadRequestException;
 import faddy.global.exception.ExceptionCode;
@@ -34,12 +34,12 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final UserService userService;
-    private final MailService mailService;
+    private final MailServiceImpl mailServiceImpl;
 
-    public UserController(UserRepository userRepository, UserService userService, MailService mailService) {
+    public UserController(UserRepository userRepository, UserService userService, MailServiceImpl mailServiceImpl) {
         this.userRepository = userRepository;
         this.userService = userService;
-        this.mailService = mailService;
+        this.mailServiceImpl = mailServiceImpl;
     }
 
     /**
