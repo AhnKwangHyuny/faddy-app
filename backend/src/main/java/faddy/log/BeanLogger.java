@@ -19,7 +19,7 @@ public class BeanLogger {
     @PostConstruct
     public void logBeans() {
         // 빈 이름으로 빈을 조회합니다.
-        Object bean = applicationContext.getBean("gmailMailSender");
+        Object bean = applicationContext.getBean("gmailSender");
         if (bean != null) {
             logger.info("Bean 'beanName' is registered: " + bean);
         } else {

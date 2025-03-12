@@ -25,11 +25,11 @@ export const API_TALK = 'api/v1/rooms';
 export const API_CHAT = 'api/v1/chats';
 
 export const BASE_URL = DEV
-  ? DEVICE ? 'http://localhost:9000' : 'http://172.30.1.94:9000'
+  ? DEVICE ? 'http://localhost:9000' : 'http://172.30.1.85:9000'
   : `${window.location.protocol};//${process.env.AXIOS_PROD_BASE_URL}`
 
 export const AXIOS_BASE_URL = DEV
-  ? DEVICE ? 'http://localhost:9000' : 'http://172.30.1.94:9000'
+  ? DEVICE ? 'http://localhost:9000' : 'http://172.30.1.85:9000'
   : `${window.location.protocol};//${process.env.AXIOS_PROD_BASE_URL}`
 
 
